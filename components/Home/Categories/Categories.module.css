@@ -1,0 +1,52 @@
+.adapter{
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    text-decoration: none!important;
+    text-decoration-line: none!important;
+}
+.leagueIcon{
+    margin-left: 5px;
+    margin-right: 15px;
+    height: 60px;
+    width: 60px;
+}
+.gradientOne{
+    background: linear-gradient(90deg, rgba(255, 0, 107, 0.3) 0%, rgba(255, 0, 107, 0) 42.13%), #FFFFFF;
+}
+.gradientTwo{    
+    background: linear-gradient(90deg, rgba(20, 0, 255, 0.3) 0%, rgba(20, 0, 255, 0) 42.53%), #FFFFFF;
+}
+.gradientThree{
+    background: linear-gradient(90deg, rgba(255, 92, 0, 0.3) 0%, rgba(255, 92, 0, 0) 42.13%), #FFFFFF;
+}
+.gradientFour{
+    background: linear-gradient(90deg, rgba(0, 255, 10, 0.3) 0%, rgba(0, 255, 10, 0) 42.53%), #FFFFFF;
+}
+.gradientFive{
+    background: linear-gradient(90deg, rgba(5, 255, 0, 0.3) 0%, rgba(4, 201, 64, 0.3) 0.01%, rgba(0, 41, 255, 0.3) 11.82%, rgba(255, 0, 199, 0.3) 18.28%, rgba(219, 255, 0, 0) 42.53%), #FFFFFF;
+}
+.gradientSix{
+    background: linear-gradient(90deg, rgba(139, 0, 255, 0.3) 0%, rgba(139, 0, 255, 0) 42.93%), #FFFFFF;
+}
+.gradientSeven{
+    background: linear-gradient(90deg, rgba(173, 255, 0, 0.3) 0%, rgba(173, 255, 0, 0) 42.53%), #FFFFFF;
+}
+.gradientEight{
+    background: linear-gradient(90deg, rgba(255, 0, 0, 0.3) 0%, rgba(255, 0, 0, 0) 41.72%), #FFFFFF;
+}
+.gradientNine{
+    background: linear-gradient(90deg, rgba(0, 255, 224, 0.3) 0%, rgba(0, 255, 224, 0) 42.13%), #FFFFFF;
+}
+.gradientTen{
+    background: linear-gradient(90deg, rgba(119, 43, 237, 0.3) 0%, rgba(254, 48, 84, 0) 42.4%), #FFFFFF;
+}
+.gradientEleven{
+    background: linear-gradient(90deg, rgba(0, 118, 65, 0.3) 0%, rgba(254, 188, 17, 0) 42.4%), #FFFFFF;
+}
+.gradientTwelve{
+    background: linear-gradient(90deg, rgba(20, 0, 255, 0.3) 0%, rgba(20, 0, 255, 0) 42.4%), #FFFFFF;
+}

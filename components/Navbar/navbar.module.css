@@ -1,0 +1,16 @@
+@font-face {
+    font-family: Nexa;
+    src: url('../../styles/font/nexa.ttf');
+}
+.topStyle{
+    background-color: #000000;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+.nexa{
+    font-family: Nexa;
+}
