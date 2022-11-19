@@ -1,6 +1,5 @@
 import { Divider, Typography, Grid } from '@mui/material'
 import { Box } from '@mui/system'
-import Link from 'next/link'
 import React from 'react'
 import {Swiper,SwiperSlide} from 'swiper/react'
 import CatAdapter from './CatAdapter/CatAdapter'

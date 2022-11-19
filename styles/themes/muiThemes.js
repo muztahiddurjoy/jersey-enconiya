@@ -13,6 +13,9 @@ const lightTheme = createTheme({
     },
     white:{
       main:'#ffffff'
+    },
+    blue:{
+      main:'#3A7BFF'
     }
   },
 });

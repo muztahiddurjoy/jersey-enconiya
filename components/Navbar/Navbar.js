@@ -1,31 +1,40 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import style from './navbar.module.css'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import { Stack } from '@mui/system'
 import Button from '@mui/material/Button'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Badge, Box, Grid, Typography, IconButton, Avatar} from '@mui/material'
+import { Badge, Box, Grid, Typography, IconButton, Avatar, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions} from '@mui/material'
 import {auth} from '../../firebase'
-import {onAuthStateChanged} from 'firebase/auth'
+import {onAuthStateChanged,signOut} from 'firebase/auth'
 import Link from 'next/link'
+import {globalCont} from '../../contexts/globalContexts'
 const Navbar = () => {
-  const [cart, setcart] = useState(2)
   const [wish, setwish] = useState(0)
-  const [league, setleague] = useState(1)
+  const [league, setleague] = useState(0)
   const [teams, setteams] = useState(0)
   const [orders, setorders] = useState(0)
   const [profile, setprofile] = useState(0)
   const [sel, setsel] = useState(0)
-  const [user, setuser] = useState()
   const [search, setsearch] = useState('')
+  const [log, setlog] = useState(false)
+  const {user,setuser,cart,setcart} = useContext(globalCont)
   useEffect(() => {
+    console.log(user)
     onAuthStateChanged(auth,(user)=>{
       if(user!=null){
         setuser(user)
       }
     })
   }, [])
+
+  const logout = ()=>{
+    signOut(auth).then(()=>{
+      setuser(null)
+      setlog(true)
+    })
+  }
   
   return (
     <AppBar position="fixed" color="grey">
@@ -66,7 +75,7 @@ const Navbar = () => {
               My Profile
             </Button>
           </Badge>
-          <Button variant="text" color="danger" size="small">
+          <Button variant="text" color="danger" size="small" onClick={logout}>
             Logout
           </Button>
         </Stack>
@@ -92,11 +101,26 @@ const Navbar = () => {
                   <ShoppingCartIcon/>
                 </Badge>
               </IconButton>
-              {user? <Link><Avatar src="" alt={user.displayName}/></Link> : <Link href="/login"><Button variant='contained' color="secondary">Login</Button></Link> }
+              {user? <Link href={`/user/${user.uid}`}><Avatar src="" alt={user.displayName}/></Link> : <Link href="/login"><Button variant='contained' color="secondary">Login</Button></Link> }
             </Stack>
           </Grid>
         </Grid>
       </Toolbar>
+      <Dialog open={log} onClose={e=> setlog(false)}>
+        <DialogTitle>
+          Logged Out
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Logged out successfully. Login Again to access your data
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={e=> setlog(false)} variant="contained" color="primary">
+            Okay
+          </Button>
+        </DialogActions>
+      </Dialog>
     </AppBar>
   )
 }

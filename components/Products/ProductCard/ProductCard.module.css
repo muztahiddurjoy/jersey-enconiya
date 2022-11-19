@@ -1,0 +1,15 @@
+.stroke{
+    height: 2px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #30B0CC;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.productImage{
+    height: 170px;
+}
+.icon{
+    height: 50px;
+    width: 50px;
+}
