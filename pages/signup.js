@@ -11,7 +11,7 @@ import {auth,db} from '../firebase'
 import {set,ref} from 'firebase/database'
 import { useRouter } from 'next/router'
 import {globalCont} from '../contexts/globalContexts'
-const signup = () => {
+const Signup = () => {
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
     const [name, setname] = useState('')
@@ -101,4 +101,4 @@ const signup = () => {
   )
 }
 
-export default signup
+export default Signup

@@ -50,11 +50,12 @@ const Navbar = () => {
               Cart
             </Button>
           </Badge>
+          {user &&
           <Badge badgeContent={wish>0 ? wish : null} color="primary">
             <Button variant="text" size='small' color={sel==2 ? "primary":"white"}>
               Wishlist
             </Button>
-          </Badge>
+          </Badge>}
           <Badge badgeContent={league>0 ? league : null} color="primary">
             <Button variant="text" size='small' color={sel==3 ? "primary":"white"}>
               Shop by Leagues
@@ -65,19 +66,21 @@ const Navbar = () => {
               Shop by Teams
             </Button>
           </Badge>
+          {user && <Link href="/orders">
           <Badge badgeContent={orders>0 ? orders : null} color="primary">
             <Button variant="text" size='small' color={sel==5 ? "primary":"white"}>
               My orders
             </Button>
           </Badge>
-          <Badge badgeContent={profile>0 ? profile : null} color="primary">
+          </Link>}
+          {user && <Link href={`/user/${user.uid}`}><Badge badgeContent={profile>0 ? profile : null} color="primary">
             <Button variant="text" size='small' color={sel==6 ? "primary":"white"}>
               My Profile
             </Button>
-          </Badge>
-          <Button variant="text" color="danger" size="small" onClick={logout}>
+          </Badge></Link>}
+          {user && <Button variant="text" color="danger" size="small" onClick={logout}>
             Logout
-          </Button>
+          </Button>}
         </Stack>
         </div>
       <Toolbar>
@@ -101,7 +104,7 @@ const Navbar = () => {
                   <ShoppingCartIcon/>
                 </Badge>
               </IconButton>
-              {user? <Link href={`/user/${user.uid}`}><Avatar src="" alt={user.displayName}/></Link> : <Link href="/login"><Button variant='contained' color="secondary">Login</Button></Link> }
+              {user? <Link href={`/user/${user.uid}`}><Avatar src={user.photoURL} alt={user.displayName}/></Link> : <Link href="/login"><Button variant='contained' color="secondary">Login</Button></Link> }
             </Stack>
           </Grid>
         </Grid>
