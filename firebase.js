@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import {getDatabase} from 'firebase/database'
 import {getAuth} from 'firebase/auth'
+import { getAnalytics ,isSupported} from "firebase/analytics";
 const firebaseConfig = {
   apiKey: "AIzaSyCgxAEoFJshRjDg9IKZh1YHVd-Sxq_xjkI",
   authDomain: "jersey-shop-7e4a2.firebaseapp.com",
@@ -12,7 +13,11 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+let analytics;
+if(typeof window!="undefined"){
+  analytics = getAnalytics(app)
+}
 const db = getDatabase(app)
 const auth = getAuth(app)
 export default app
-export {db,auth}
+export {db,auth,analytics}

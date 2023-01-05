@@ -8,11 +8,12 @@ import Link from "next/link"
 import Button from "@mui/material/Button"
 import { Divider, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from "@mui/material"
 import { Facebook, Google, Visibility, VisibilityOff } from "@mui/icons-material"
-import {auth,db} from "../firebase"
+import {auth,db,analytics} from "../firebase"
 import {set,ref,get,child} from 'firebase/database'
-import {signInWithEmailAndPassword,onAuthStateChanged,GoogleAuthProvider,signInWithPopup} from "firebase/auth"
+import {signInWithEmailAndPassword,onAuthStateChanged,GoogleAuthProvider,signInWithPopup,signOut} from "firebase/auth"
 import {globalCont} from "../contexts/globalContexts"
 import { useRouter } from "next/router"
+import {logEvent} from 'firebase/analytics'
 const Login = () => {
   const router = useRouter()
   const [email, setemail] = useState("")
@@ -52,6 +53,7 @@ const Login = () => {
     }
     else{
       signInWithEmailAndPassword(auth,email,pass).then((user)=>{
+        logEvent(analytics,'login',{way:'emailAndPass'})
         setuser(user)
       })
     }
@@ -59,12 +61,12 @@ const Login = () => {
   const googleLogin = ()=>{
     signInWithPopup(auth,provider).then((result)=>{
       const cred = GoogleAuthProvider.credentialFromResult(result)
-      const uid = result.user.uid
+      const uid = result.user.uid 
       console.log(result.user)
       get(child(ref(db),`/users/${uid}`)).then((snap)=>{
         if(snap.exists()){
           router.push(`/user/${uid}`)
-        
+          logEvent(analytics,'login',{way:'Google'})
         }
         else{
           set(ref(db,`/users/${uid}`),{
@@ -75,6 +77,7 @@ const Login = () => {
             joined: new Date().toLocaleDateString()
           }).then(()=>{
             setuser(result.user)
+            logEvent(analytics,'sign_up',{way:'Google'})
             router.push(`/user/${uid}`)
           })
         }
@@ -84,7 +87,8 @@ const Login = () => {
     const errorCode = error.code;
     const errorMessage = error.message;
     const email = error.customData.email;
-    alert('Error')
+    alert('Please Try Again')    
+    signOut(auth)
     const credential = GoogleAuthProvider.credentialFromError(error);
     // ...
   });

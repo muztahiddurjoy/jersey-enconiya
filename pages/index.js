@@ -10,7 +10,7 @@ import {get,child,ref} from 'firebase/database'
 import axios from 'axios'
 
 
-function fetchProduct() {
+async function fetchProduct() {
   return get(child(ref(db),'/')).then((snap)=>{
     if(snap.exists()){
       return snap.val()

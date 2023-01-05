@@ -6,6 +6,7 @@ import theme from '../styles/themes/muiThemes'
 import {globalCont} from '../contexts/globalContexts'
 import { useState } from 'react'
 import Head from 'next/head'
+import Script from 'next/script'
 function MyApp({ Component, pageProps }) {
   const [user, setuser] = useState(null)
   const [cart, setcart] = useState(null)
